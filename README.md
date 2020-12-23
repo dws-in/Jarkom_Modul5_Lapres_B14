@@ -3,7 +3,7 @@ Oleh:
 - Iqbaal Pratama Putra (05111840000021) <br>
 - Dwi Wahyu Santoso (05111840000121) <br>
 
-### Topologi <br>
+## Topologi <br>
 ![alt text](/img/topologi.png)<br>
 
 **Keterangan:** <br>
@@ -14,6 +14,11 @@ Oleh:
 - SIDOARJO: Client 200 host <br>
 - GRESIK: Client 210 host <br>
 
-## Soal
-1. 
+## Langkah-langkah Pengerjaan <br>
+1. Membuat file `topologi.sh` sebagai berikut. <br>
+   - Ketentuan untuk setia server diberi memori 128M sedangkan client dan router 96M. <br>
+     ![alt text](/img/1.1.png) <br>
+2. Mengkonfigurasi file `/etc/network/interfaces`sebagai berikut. <br>
+
+
 
