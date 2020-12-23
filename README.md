@@ -54,6 +54,7 @@ Oleh:
    ```
    
    ```
-
+6. Supaya dapat mengakses ke luar ditambahkan konfigurasi iptables pada SURABAYA. <br>
+7. 
 
 
