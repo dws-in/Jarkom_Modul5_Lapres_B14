@@ -42,7 +42,18 @@ Oleh:
    - Jalankan `service networking restart` untuk memperbarui setting. <br>
      
 4. Membuat file `routing.sh` sebagai berikut. <br>
-   - 
+   - Konfigurasi routing pada SURABAYA sebagai berikut. <br>
+     ![alt text](/img/4.1.png) <br>
+   - Konfigurasi routing pada BATU sebagai berikut. <br>
+     ![alt text](/img/4.2.png) <br>
+   - Konfigurasi routing pada KEDIRI sebagai berikut. <br>
+     ![alt text](/img/4.3.png) <br>
+   - Bash `routing.sh` pada setiap router. <br>
+     
+5. Export proxy pada setiap UML seperti di bawah ini. <br>
+   ```
+   
+   ```
 
 
 
