@@ -18,6 +18,10 @@ Oleh:
 1. Membuat file `topologi.sh` sebagai berikut. <br>
    - Ketentuan untuk setia server diberi memori 128M sedangkan client dan router 96M. <br>
      ![alt text](/img/1.1.png) <br>
+2. Mengedit file `/etc/sysctl.conf`sebagai berikut. <br>
+   - Menghapus tanda pagar `#` pada baris `net.ipv4.ip_forward=1`. <br>
+   - Memperbarui setting dengan menjalankan `sysctl -p`. <br>
+   - Lakukan hal yang sama pada setiap uml lainnya. <br>
 2. Mengkonfigurasi file `/etc/network/interfaces`sebagai berikut. <br>
 
 
