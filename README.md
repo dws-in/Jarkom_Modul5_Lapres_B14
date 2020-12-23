@@ -6,6 +6,14 @@ Oleh:
 ### Topologi <br>
 ![alt text](/img/topologi.png)<br>
 
+**Keterangan:** <br>
+- MALANG: DNS Server <br>
+- MOJOKERTO: DHCP Server <br>
+- MADIUN: Web Server <br>
+- PROBOLINGGO: Web Server <br>
+- SIDOARJO: Client 200 host <br>
+- GRESIK: Client 210 host <br>
+
 ## Soal
 1. 
 
