@@ -18,13 +18,17 @@ Oleh:
 1. Membuat file `topologi.sh` sebagai berikut. <br>
    - Ketentuan untuk setia server diberi memori 128M sedangkan client dan router 96M. <br>
      ![alt text](/img/1.1.png) <br>
-     
-2. Mengedit file `/etc/sysctl.conf`sebagai berikut. <br>
+
+2. Melakukan perhitungan subnet berdasarkan ketentuan menggunakan VLSM<br>
+   - Pembagian subnet:
+    ![alt text](/img/TREE MODUL 5.png) <br>
+    ![alt text](/img/VLSM Modul 5.png) <br>
+3. Mengedit file `/etc/sysctl.conf`sebagai berikut. <br>
    - Menghapus tanda pagar `#` pada baris `net.ipv4.ip_forward=1`. <br>
    - Memperbarui setting dengan menjalankan `sysctl -p`. <br>
    - Lakukan hal yang sama pada setiap uml lainnya. <br>
-   
-3. Mengkonfigurasi file `/etc/network/interfaces`sebagai berikut. <br>
+
+4. Mengkonfigurasi file `/etc/network/interfaces`sebagai berikut. <br>
    - Konfigurasi SURABAYA sebagai berikut. <br>
      ![alt text](/img/3.1.png) <br>
    - Konfigurasi MALANG sebagai berikut. <br>
@@ -40,8 +44,8 @@ Oleh:
    - Konfigurasi SIDOARJO sebagai berikut. <br>
      ![alt text](/img/3.7.png) <br>
    - Jalankan `service networking restart` untuk memperbarui setting. <br>
-     
-4. Membuat file `routing.sh` sebagai berikut. <br>
+
+5. Membuat file `routing.sh` sebagai berikut. <br>
    - Konfigurasi routing pada SURABAYA sebagai berikut. <br>
      ![alt text](/img/4.1.png) <br>
    - Konfigurasi routing pada BATU sebagai berikut. <br>
@@ -49,12 +53,12 @@ Oleh:
    - Konfigurasi routing pada KEDIRI sebagai berikut. <br>
      ![alt text](/img/4.3.png) <br>
    - Bash `routing.sh` pada setiap router. <br>
-     
-5. Export proxy pada setiap UML seperti di bawah ini. <br>
+
+6. Export proxy pada setiap UML seperti di bawah ini. <br>
    ```
-   
+
    ```
-6. Supaya dapat mengakses ke luar ditambahkan konfigurasi iptables pada SURABAYA. <br>
-7. 
+7. Supaya dapat mengakses ke luar ditambahkan konfigurasi iptables pada SURABAYA. <br>
+87.
 
 
