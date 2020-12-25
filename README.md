@@ -20,7 +20,8 @@ Oleh:
      ![alt text](/img/1.1.png) <br>
 
 2. Melakukan perhitungan subnet berdasarkan ketentuan menggunakan VLSM<br>
-   - Pembagian subnet:
+   - Pembagian subnet:<br>
+    ![alt text](/img/table.png) <br>
     ![alt text](/img/vlsm.png) <br>
     ![alt text](/img/tree.png) <br>
 3. Mengedit file `/etc/sysctl.conf`sebagai berikut. <br>
