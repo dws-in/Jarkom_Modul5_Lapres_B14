@@ -21,8 +21,8 @@ Oleh:
 
 2. Melakukan perhitungan subnet berdasarkan ketentuan menggunakan VLSM<br>
    - Pembagian subnet:
-    ![alt text](/img/TREE MODUL 5.png) <br>
-    ![alt text](/img/VLSM Modul 5.png) <br>
+    ![alt text](/img/tree.png) <br>
+    ![alt text](/img/vlsm.png) <br>
 3. Mengedit file `/etc/sysctl.conf`sebagai berikut. <br>
    - Menghapus tanda pagar `#` pada baris `net.ipv4.ip_forward=1`. <br>
    - Memperbarui setting dengan menjalankan `sysctl -p`. <br>
