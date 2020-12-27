@@ -56,7 +56,8 @@ Oleh:
      ![alt text](/img/5.1.png) <br>
    - Jalankan `source routing.sh` untuk menambahkan route tersebut. <br>
 
-6. Supaya dapat mengakses ke luar ditambahkan konfigurasi iptables pada SURABAYA. <br>
+6. Mengonfigurasi DNS Server. <br>
+   - 
 7.
 
 
