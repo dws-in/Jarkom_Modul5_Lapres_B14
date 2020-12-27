@@ -15,15 +15,15 @@ Oleh:
 - GRESIK: Client 210 host <br>
 
 ## Langkah-langkah Pengerjaan <br>
-1. Membuat file `topologi.sh` sebagai berikut. <br>
-   - Ketentuan untuk setia server diberi memori 128M sedangkan client dan router 96M. <br>
-     ![alt text](/img/1.1.png) <br>
-
-2. Melakukan perhitungan subnet berdasarkan ketentuan menggunakan VLSM<br>
+1. Melakukan perhitungan subnet berdasarkan ketentuan menggunakan VLSM<br>
    - Pembagian subnet:<br>
     ![alt text](/img/table.png) <br>
     ![alt text](/img/vlsm.png) <br>
     ![alt text](/img/tree.png) <br>
+    
+2. Membuat file `topologi.sh` sebagai berikut. <br>
+   - Ketentuan untuk setia server diberi memori 128M sedangkan client dan router 96M. <br>
+     ![alt text](/img/2.1.png) <br>
     
 3. Mengedit file `/etc/sysctl.conf`sebagai berikut. <br>
    - Menghapus tanda pagar `#` pada baris `net.ipv4.ip_forward=1`. <br>
