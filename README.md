@@ -56,11 +56,7 @@ Oleh:
      ![alt text](/img/5.1.png) <br>
    - Jalankan `source routing.sh` untuk menambahkan route tersebut. <br>
 
-6. Export proxy pada setiap UML seperti di bawah ini. <br>
-   ```
-
-   ```
-7. Supaya dapat mengakses ke luar ditambahkan konfigurasi iptables pada SURABAYA. <br>
-87.
+6. Supaya dapat mengakses ke luar ditambahkan konfigurasi iptables pada SURABAYA. <br>
+7.
 
 
