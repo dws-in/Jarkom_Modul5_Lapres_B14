@@ -52,12 +52,29 @@ Oleh:
    - Jalankan `service networking restart` untuk memperbarui setting. <br>
 
 5. Membuat file `routing.sh` sebagai berikut. <br>
-   - Konfigurasi routing pada SURABAYA sebagai berikut. <br>
+   - Konfigurasi routing pada SURABAYA seperti gambar di bawah ini. <br>
      ![alt text](/img/5.1.png) <br>
    - Jalankan `source routing.sh` untuk menambahkan route tersebut. <br>
 
-6. Mengonfigurasi DNS Server. <br>
-   - 
-7.
+6. Mengistall DHCP Server pada MOJOKERTO. <br>
+   - Jalankan `apt-get update` pada MOJOKERTO. <br>
+   - Lalu, jalankan `apt-get install isc-dhcp-server`. <br>
+   - Edit file `/etc/default/isc-dhcp-server` pada MOJOKERTO, dengan menambahkan `INTERFACESv4="eth0". <br>
+     ![alt text](/img/6.1.png) <br>
+   - Selanjutnya jalankan `service isc-dhcp-server restart`. <br>
+   - Edit file `/etc/dhcp/dhcp.conf`pada MOJOKERTO seperti gambar di bawah ini. <br>
+     ![alt text](/img/6.2.png) <br>
+     
+7. Menginstall DHCP Relay pada KEDIRI. <br>
+   - Jalankan `apt-get update` pada KEDIRI. <br>
+   - Lalu, jalankan `apt-get install isc-dhcp-relay`. <br>
+   - Edit file `/etc/default/isc-dhcp-relay` pada KEDIRI, dengan menambahkan `SERVERS="10.151.83.123". <br>
+     ![alt text](/img/7.1.png) <br>
+     
+8. Menginstall DHCP Relay pada BATU. <br>
+   - Jalankan `apt-get update` pada BATU. <br>
+   - Lalu, jalankan `apt-get install isc-dhcp-relay`. <br>
+   - Edit file `/etc/default/isc-dhcp-relay` pada BATU, dengan menambahkan `SERVERS="10.151.83.123". <br>
+     ![alt text](/img/8.1.png) <br>
 
 
