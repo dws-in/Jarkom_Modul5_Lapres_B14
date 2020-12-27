@@ -68,13 +68,13 @@ Oleh:
 7. Menginstall DHCP Relay pada KEDIRI. <br>
    - Jalankan `apt-get update` pada KEDIRI. <br>
    - Lalu, jalankan `apt-get install isc-dhcp-relay`. <br>
-   - Edit file `/etc/default/isc-dhcp-relay` pada KEDIRI, dengan menambahkan `SERVERS="10.151.83.123". <br>
+   - Edit file `/etc/default/isc-dhcp-relay` pada KEDIRI, dengan menambahkan `SERVERS="10.151.83.123"`. <br>
      ![alt text](/img/7.1.png) <br>
      
 8. Menginstall DHCP Relay pada BATU. <br>
    - Jalankan `apt-get update` pada BATU. <br>
    - Lalu, jalankan `apt-get install isc-dhcp-relay`. <br>
-   - Edit file `/etc/default/isc-dhcp-relay` pada BATU, dengan menambahkan `SERVERS="10.151.83.123". <br>
+   - Edit file `/etc/default/isc-dhcp-relay` pada BATU, dengan menambahkan `SERVERS="10.151.83.123"`. <br>
      ![alt text](/img/8.1.png) <br>
 
 
