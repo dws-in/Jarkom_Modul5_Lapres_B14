@@ -53,12 +53,8 @@ Oleh:
 
 5. Membuat file `routing.sh` sebagai berikut. <br>
    - Konfigurasi routing pada SURABAYA sebagai berikut. <br>
-     ![alt text](/img/4.1.png) <br>
-   - Konfigurasi routing pada BATU sebagai berikut. <br>
-     ![alt text](/img/4.2.png) <br>
-   - Konfigurasi routing pada KEDIRI sebagai berikut. <br>
-     ![alt text](/img/4.3.png) <br>
-   - Bash `routing.sh` pada setiap router. <br>
+     ![alt text](/img/5.1.png) <br>
+   - Jalankan `source routing.sh` untuk menambahkan route tersebut. <br>
 
 6. Export proxy pada setiap UML seperti di bawah ini. <br>
    ```
