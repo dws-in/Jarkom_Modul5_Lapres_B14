@@ -24,6 +24,7 @@ Oleh:
     ![alt text](/img/table.png) <br>
     ![alt text](/img/vlsm.png) <br>
     ![alt text](/img/tree.png) <br>
+    
 3. Mengedit file `/etc/sysctl.conf`sebagai berikut. <br>
    - Menghapus tanda pagar `#` pada baris `net.ipv4.ip_forward=1`. <br>
    - Memperbarui setting dengan menjalankan `sysctl -p`. <br>
@@ -31,19 +32,23 @@ Oleh:
 
 4. Mengkonfigurasi file `/etc/network/interfaces`sebagai berikut. <br>
    - Konfigurasi SURABAYA sebagai berikut. <br>
-     ![alt text](/img/3.1.png) <br>
+     ![alt text](/img/4.1.png) <br>
+   - Konfigurasi BATU sebagai berikut. <br>
+     ![alt text](/img/4.2.png) <br>
+   - Konfigurasi KEDIRI sebagai berikut. <br>
+     ![alt text](/img/4.3.png) <br>
    - Konfigurasi MALANG sebagai berikut. <br>
-     ![alt text](/img/3.2.png) <br>
+     ![alt text](/img/4.4.png) <br>
    - Konfigurasi MOJOKERTO sebagai berikut. <br>
-     ![alt text](/img/3.3.png) <br>
+     ![alt text](/img/4.5.png) <br>
    - Konfigurasi PROBOLINGGO sebagai berikut. <br>
-     ![alt text](/img/3.4.png) <br>
+     ![alt text](/img/4.6.png) <br>
    - Konfigurasi MADIUN sebagai berikut. <br>
-     ![alt text](/img/3.5.png) <br>
+     ![alt text](/img/4.7.png) <br>
    - Konfigurasi GRESIK sebagai berikut. <br>
-     ![alt text](/img/3.6.png) <br>
+     ![alt text](/img/4.8.png) <br>
    - Konfigurasi SIDOARJO sebagai berikut. <br>
-     ![alt text](/img/3.7.png) <br>
+     ![alt text](/img/4.9.png) <br>
    - Jalankan `service networking restart` untuk memperbarui setting. <br>
 
 5. Membuat file `routing.sh` sebagai berikut. <br>
