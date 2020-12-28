@@ -65,16 +65,22 @@ Oleh:
    - Edit file `/etc/dhcp/dhcp.conf`pada MOJOKERTO seperti gambar di bawah ini. <br>
      ![alt text](/img/6.2.png) <br>
      
-7. Menginstall DHCP Relay pada KEDIRI. <br>
-   - Jalankan `apt-get update` pada KEDIRI. <br>
+7. Menginstall DHCP Relay pada SURABAYA. <br>
+   - Jalankan `apt-get update` pada SURABAYA. <br>
    - Lalu, jalankan `apt-get install isc-dhcp-relay`. <br>
-   - Edit file `/etc/default/isc-dhcp-relay` pada KEDIRI, dengan menambahkan `SERVERS="10.151.83.123"`. <br>
+   - Edit file `/etc/default/isc-dhcp-relay` pada SURABAYA. Tambahkan `SERVERS="10.151.83.123"` dan `INTERFACES=""`. <br>
      ![alt text](/img/7.1.png) <br>
      
-8. Menginstall DHCP Relay pada BATU. <br>
+8. Menginstall DHCP Relay pada KEDIRI. <br>
+   - Jalankan `apt-get update` pada KEDIRI. <br>
+   - Lalu, jalankan `apt-get install isc-dhcp-relay`. <br>
+   - Edit file `/etc/default/isc-dhcp-relay` pada KEDIRI. Tambahkan `SERVERS="10.151.83.123"` dan `INTERFACES=""`.  <br>
+     ![alt text](/img/8.1.png) <br>
+     
+9. Menginstall DHCP Relay pada BATU. <br>
    - Jalankan `apt-get update` pada BATU. <br>
    - Lalu, jalankan `apt-get install isc-dhcp-relay`. <br>
-   - Edit file `/etc/default/isc-dhcp-relay` pada BATU, dengan menambahkan `SERVERS="10.151.83.123"`. <br>
-     ![alt text](/img/8.1.png) <br>
+   - Edit file `/etc/default/isc-dhcp-relay` pada BATU. Tambahkan `SERVERS="10.151.83.123"` dan `INTERFACES=""`.  <br>
+     ![alt text](/img/9.1.png) <br>
 
 
