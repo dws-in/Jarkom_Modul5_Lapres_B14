@@ -82,5 +82,15 @@ Oleh:
    - Lalu, jalankan `apt-get install isc-dhcp-relay`. <br>
    - Edit file `/etc/default/isc-dhcp-relay` pada BATU. Tambahkan `SERVERS="10.151.83.123"` dan `INTERFACES="eth0 eth1 eth2"`.  <br>
      ![alt text](/img/9.1.png) <br>
+     
+     
+## Soal
+1. Agar topologi yang dibuat dapat mengakses keluar, kita mengkonfigurasi SURABAYA menggunakan iptables, tanpa menggunakan MASQUERADE. <br>
+2. Mendrop semua akses SSH dari luar Topologi (UML) kita pada server yang memiliki ip DMZ (DHCP dan DNS SERVER) pada SURABAYA demi menjaga keamanan. <br>
+3. Membatasi DHCP dan DNS server hanya boleh menerima maksimal 3 koneksi ICMP secara bersamaan yang berasal dari mana saja menggunakan iptables pada masing masing server, selebihnya akan di DROP. <br>
+4. Akses ke MALANG yang berasal dari subnet SIDOARJO hanya diperbolehkan pada pukul 07.00 - 17.00 pada hari Senin sampai Jumat. <br>
+5. Akses dari subnet GRESIK hanya diperbolehkan pada pukul 17.00 hingga pukul 07.00 setiap harinya. Selain itu akan diREJECT. <br>
+6. SURABAYA disetting sehingga setiap request dari client yang mengakses DNS Server akan didistribusikan secara bergantian pada PROBOLINGGO port 80 dan MADIUN port 80. <br>
+7. Semua paket didrop oleh firewall (dalam topologi) tercatat dalam log pada setiap UML yang memiliki aturan drop. <br>
 
 
