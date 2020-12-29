@@ -102,7 +102,7 @@ Oleh:
     iptables -A LOGGING -j DROP
     ```
     - Jalankan `bash no2.sh` untuk mengaktifkan iptables tsb. <br>
-    - Untuk melihat hasilnya, lakuklan `nc -l -p 22` pada MALANG dan `nc 10.151.83.122 22` pada BIMA. Jika tidak diterima oleh MALANG maka berhasil. <br>
+    - Untuk melihat hasilnya, lakukan `nc -l -p 22` pada MALANG dan `nc 10.151.83.122 22` pada BIMA. Jika tidak diterima oleh MALANG maka berhasil. <br>
    
 12. Membatasi DHCP dan DNS server maksimal 3 koneksi ICMP secara bersamaan, selebihnya akan di DROP. <br>
     - Buat file baru pada MALANG dan MOJOKERTO dengan nama `no3.sh` untuk menyimpan script. <br>
@@ -114,7 +114,7 @@ Oleh:
     iptables -A LOGGING -j DROP
     ```
     - Jalankan `bash no3.sh` untuk mengaktifkan iptables tsb. <br>
-    - Untuk melihat hasilnya, lakuklan `ping 10.151.83.122` pada 4 UML selain MALANG dan MOJOKERTO. Jika 3 UML pertama menerima ack dan yang ke-4 tidak menerima ack maka berhasil. <br>
+    - Untuk melihat hasilnya, lakukan `ping 10.151.83.122` pada 4 UML selain MALANG dan MOJOKERTO. Jika 3 UML pertama menerima ack dan yang ke-4 tidak menerima ack maka berhasil. <br>
     
 13. SIDOARJO dan GRESIK diberikan waktu akses untuk mengakses server MALANG. <br>
     - SIDOARJO = 07:00 - 17:00 (Senin - Jumat) dan GRESIK = 17:00 - 07:00 (Setiap Hari). <br>
@@ -130,7 +130,8 @@ Oleh:
     iptables -A INPUT -s 192.168.2.0/24 -m time --timestart 07:00 --timestop 16:59 -j REJECT
     ```
     - Jalankan `bash` pada `no4.sh` dan `no5.sh` untuk mengaktifkan iptables tsb. <br>
-    - Untuk melihat hasilnya, lakuklan `ping 10.151.83.122` pada 4 UML selain MALANG dan MOJOKERTO. Jika 3 UML pertama menerima ack dan yang ke-4 tidak menerima ack maka berhasil. <br>
+    - Untuk melihat hasil dari script `no4.sh`, lakukan `date -s '202020-12-12 00:00:00'` pada MALANG. Kemudian dari SIDOARJO `ping 10.151.83.122` jika hasilnya unreachable maka berhasil. <br>
+    - Untuk melihat hasil dari script `no5.sh`, lakukan `date -s '202020-12-12 08:00:00'` pada MALANG. Kemudian dari GRESIK `ping 10.151.83.122` jika hasilnya unreachable maka berhasil. <br>
     
 4. Akses ke MALANG yang berasal dari subnet SIDOARJO hanya diperbolehkan pada pukul 07.00 - 17.00 pada hari Senin sampai Jumat. <br>
 5. Akses dari subnet GRESIK hanya diperbolehkan pada pukul 17.00 hingga pukul 07.00 setiap harinya. Selain itu akan diREJECT. <br>
