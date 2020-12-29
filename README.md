@@ -106,17 +106,20 @@ Oleh:
    
 12. Membatasi DHCP dan DNS server maksimal 3 koneksi ICMP secara bersamaan, selebihnya akan di DROP. <br>
     - Buat file baru pada MALANG dan MOJOKERTO dengan nama `no3.sh` untuk menyimpan script. <br>
-    - Tambahkan pada file tersebut script di bawah ini. <br>
+    - Tambahkan pada file `no3.sh` tersebut dengan script di bawah ini. <br>
     ```
-    iptables -A INPUT -p icmp -m connlimit --connlimit-above 3 --connlimit-mask 0 -j DROP
+    iptables -N LOGGING
+    iptables -A INPUT -p icmp -m connlimit --connlimit-above 3 --connlimit-mask 0 -j LOGGING
+    iptables -A LOGGING -m limit --limit 5/min -j LOG --log-prefix "iptables_FORWARD_denied: " --log-level 7
+    iptables -A LOGGING -j DROP
     ```
     - Jalankan `bash no3.sh` untuk mengaktifkan iptables tsb. <br>
     - Untuk melihat hasilnya, lakuklan `ping 10.151.83.122` pada 4 UML selain MALANG dan MOJOKERTO. Jika 3 UML pertama menerima ack dan yang ke-4 tidak menerima ack maka berhasil. <br>
     
 13. SIDOARJO dan GRESIK diberikan waktu akses untuk mengakses server MALANG. <br>
     - SIDOARJO = 07:00 - 17:00 (Senin - Jumat) dan GRESIK = 17:00 - 07:00 (Setiap Hari). <br>
-    - Buat file baru pada MALANG dan MOJOKERTO dengan nama `no4-5.sh` untuk menyimpan script. <br>
-    - Tambahkan pada file tersebut script di bawah ini. <br>
+    - Buat 2 file baru pada MALANG dan MOJOKERTO dengan nama `no4.sh` dan `no5.sh` untuk menyimpan script. <br>
+    - Tambahkan pada file `no4.sh` script di bawah ini. <br>
     ```
     iptables -A INPUT -p icmp -m connlimit --connlimit-above 3 --connlimit-mask 0 -j DROP
     ```
