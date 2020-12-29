@@ -128,16 +128,16 @@ Oleh:
     - Untuk melihat hasil dari script `no5.sh`, lakukan `date -s '202020-12-12 08:00:00'` pada MALANG. Kemudian dari GRESIK `ping 10.151.83.122` jika hasilnya unreachable maka berhasil. <br>
     
 14. Request dari client yang mengakses DNS Server akan didistribusikan secara bergantian pada PROBOLINGGO port 80 dan MADIUN port 80. <br>
-    - Buat file baru pada MALANG, MOJOKERTO dan SURABAYA dengan nama `no7.sh` untuk menyimpan script. <br>
-    - Tambahkan pada file `no7.sh` script di bawah ini. <br>
+    - Buat file baru pada SURABAYA dengan nama `no6.sh` untuk menyimpan script. <br>
+    - Tambahkan pada file `no6.sh` script di bawah ini. <br>
     ```
-    iptables -N LOGGING
-    iptables -A INPUT -j LOGGING
-    iptables -A OUTPUT -j LOGGING
-    iptables -A LOGGING -j LOG --log-prefix "IPTables-Dropped: " --log-level 4
-    iptables -A LOGGING -j DROP
+    iptables -A PREROUTING -t nat -p tcp -d 10.151.83.122 --dport 80 -m statistic --mode nth --every 2 --packet 0 -j DNAT --to-destination 192.168.0.10:80
+    iptables -A PREROUTING -t nat -p tcp -d 10.151.83.122 --dport 80 -j DNAT --to-destination 192.168.0.11:80
+    iptables -t nat -A POSTROUTING -p tcp -d 192.168.0.10 --dport 80 -j SNAT --to-source 10.151.83.122:80
+    iptables -t nat -A POSTROUTING -p tcp -d 192.168.0.11 --dport 80 -j SNAT --to-source 10.151.83.122:80
     ```
-    - Jalankan `bash` pada `no7.sh` untuk mengaktifkan iptables tsb. <br>
+    - Jalankan `bash` pada `no6.sh` untuk mengaktifkan iptables tsb. <br>
+    - Untuk melihat hasilnya, lakukan `nc -l -p 80` pada MADIUN dan PROBOLINGGO. Kemudian dari SIDOARJO `nc 10.151.83.122 80`. Masukkan pesan apa saja, maka pesan itu akan di terima oleh PROBOLINGGO. Selanjutnya SIDOARJO keluar dari sambungan tersebut dengan `Ctrl+c` dan masuk lagi dengan konfigurasi yang sama. Lalu masukkan pesan, maka pesan itu tidak akan diterima oleh MADIUN. Jadi ada pergantian antara MADIUN dan PROBOLINGGO. <br>
     
 15. Semua paket diDROP tercatat dalam log pada setiap UML yang memiliki DROP policy. <br>
     - Buat file baru pada MALANG, MOJOKERTO dan SURABAYA dengan nama `no7.sh` untuk menyimpan script. <br>
