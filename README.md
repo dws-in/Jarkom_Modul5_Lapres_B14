@@ -101,7 +101,15 @@ Oleh:
     - Jalankan `bash no2.sh` untuk mengaktifkan iptables tsb. <br>
     - Untuk melihat hasilnya, lakuklan `nc -l -p 22` pada MALANG dan `nc 10.151.83.122 22` pada BIMA. Jika tidak diterima oleh MALANG maka berhasil. <br>
    
-3. Membatasi DHCP dan DNS server hanya boleh menerima maksimal 3 koneksi ICMP secara bersamaan yang berasal dari mana saja menggunakan iptables pada masing masing server, selebihnya akan di DROP. <br>
+12. Membatasi DHCP dan DNS server maksimal 3 koneksi ICMP secara bersamaan, selebihnya akan di DROP. <br>
+    - Buat file baru pada MALANG dan MOJOKERTO dengan nama `no3.sh` untuk menyimpan script. <br>
+    - Tambahkan pada file tersebut script di bawah ini. <br>
+    ```
+    iptables -A INPUT -p icmp -m connlimit --connlimit-above 3 --connlimit-mask 0 -j DROP
+    ```
+    - Jalankan `bash no3.sh` untuk mengaktifkan iptables tsb. <br>
+    - Untuk melihat hasilnya, lakuklan `ping 10.151.83.122` pada 4 UML selain MALANG dan MOJOKERTO. Jika 3 UML pertama menerima ack dan yang ke-4 tidak menerima ack maka berhasil. <br>
+    
 4. Akses ke MALANG yang berasal dari subnet SIDOARJO hanya diperbolehkan pada pukul 07.00 - 17.00 pada hari Senin sampai Jumat. <br>
 5. Akses dari subnet GRESIK hanya diperbolehkan pada pukul 17.00 hingga pukul 07.00 setiap harinya. Selain itu akan diREJECT. <br>
 6. SURABAYA disetting sehingga setiap request dari client yang mengakses DNS Server akan didistribusikan secara bergantian pada PROBOLINGGO port 80 dan MADIUN port 80. <br>
