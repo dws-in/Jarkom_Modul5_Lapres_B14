@@ -96,10 +96,7 @@ Oleh:
     - Buat file baru dengan nama `no2.sh` untuk menyimpan script. <br>
     - Tambahkan pada file tersebut script di bawah ini. <br>
     ```
-    iptables -N LOGGING
-    iptables -A FORWARD -p tcp --dport 22 -d 10.151.83.120/29 -i eth0 -j LOGGING
-    iptables -A LOGGING -m limit --limit 5/min -j LOG --log-prefix "iptables_FORWARD_denied: " --log-level 7
-    iptables -A LOGGING -j DROP
+    iptables -A FORWARD -p tcp --dport 22 -d 10.151.83.120/29 -i eth0 -j DROP
     ```
     - Jalankan `bash no2.sh` untuk mengaktifkan iptables tsb. <br>
     - Untuk melihat hasilnya, lakukan `nc -l -p 22` pada MALANG dan `nc 10.151.83.122 22` pada BIMA. Jika tidak diterima oleh MALANG maka berhasil. <br>
@@ -108,10 +105,7 @@ Oleh:
     - Buat file baru pada MALANG dan MOJOKERTO dengan nama `no3.sh` untuk menyimpan script. <br>
     - Tambahkan pada file `no3.sh` tersebut dengan script di bawah ini. <br>
     ```
-    iptables -N LOGGING
-    iptables -A INPUT -p icmp -m connlimit --connlimit-above 3 --connlimit-mask 0 -j LOGGING
-    iptables -A LOGGING -m limit --limit 5/min -j LOG --log-prefix "iptables_FORWARD_denied: " --log-level 7
-    iptables -A LOGGING -j DROP
+    iptables -A INPUT -p icmp -m connlimit --connlimit-above 3 --connlimit-mask 0 -j DROP
     ```
     - Jalankan `bash no3.sh` untuk mengaktifkan iptables tsb. <br>
     - Untuk melihat hasilnya, lakukan `ping 10.151.83.122` pada 4 UML selain MALANG dan MOJOKERTO. Jika 3 UML pertama menerima ack dan yang ke-4 tidak menerima ack maka berhasil. <br>
