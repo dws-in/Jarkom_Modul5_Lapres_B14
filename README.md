@@ -96,19 +96,25 @@ Oleh:
     - Buat file baru dengan nama `no2.sh` untuk menyimpan script. <br>
     - Tambahkan pada file tersebut script di bawah ini. <br>
     ```
-    iptables -A FORWARD -p tcp --dport 22 -d 10.151.83.120/29 -i eth0 -j DROP
+    iptables -N LOGGING
+    iptables -A FORWARD -p tcp --dport 22 -d 10.151.83.120/29 -i eth0 -j LOGGING
+    iptables -A LOGGING -m limit --limit 5/min -j LOG --log-prefix "iptables_FORWARD_denied: " --log-level 7
+    iptables -A LOGGING -j DROP
     ```
     - Jalankan `bash no2.sh` untuk mengaktifkan iptables tsb. <br>
-    - Untuk melihat hasilnya, lakukan `nc -l -p 22` pada MALANG dan `nc 10.151.83.122 22` pada BIMA. Jika tidak diterima oleh MALANG maka berhasil. <br>
+    - Untuk melihat hasilnya, lakukan `nc -l -p 22` pada MALANG dan `nc 10.151.83.122 22` pada BIMA. Jika tidak diterima oleh MALANG maka berhasil. Message yang diDROP akan masuk ke dalam log. <br>
    
 12. Membatasi DHCP dan DNS server maksimal 3 koneksi ICMP secara bersamaan, selebihnya akan di DROP. <br>
     - Buat file baru pada MALANG dan MOJOKERTO dengan nama `no3.sh` untuk menyimpan script. <br>
     - Tambahkan pada file `no3.sh` tersebut dengan script di bawah ini. <br>
     ```
-    iptables -A INPUT -p icmp -m connlimit --connlimit-above 3 --connlimit-mask 0 -j DROP
+    iptables -N LOGGING
+    iptables -A INPUT -p icmp -m connlimit --connlimit-above 3 --connlimit-mask 0 -j LOGGING
+    iptables -A LOGGING -m limit --limit 5/min -j LOG --log-prefix "IPTables-DROP: " --log-level 4
+    iptables -A LOGGING -j DROP
     ```
     - Jalankan `bash no3.sh` untuk mengaktifkan iptables tsb. <br>
-    - Untuk melihat hasilnya, lakukan `ping 10.151.83.122` pada 4 UML selain MALANG dan MOJOKERTO. Jika 3 UML pertama menerima ack dan yang ke-4 tidak menerima ack maka berhasil. <br>
+    - Untuk melihat hasilnya, lakukan `ping 10.151.83.122` pada 4 UML selain MALANG dan MOJOKERTO. Jika 3 UML pertama menerima ack dan yang ke-4 tidak menerima ack maka berhasil. Message yang diDROP akan masuk ke dalam log. <br>
     
 13. SIDOARJO dan GRESIK diberikan waktu akses untuk mengakses server MALANG. <br>
     - SIDOARJO = 07:00 - 17:00 (Senin - Jumat) dan GRESIK = 17:00 - 07:00 (Setiap Hari). <br>
@@ -138,17 +144,4 @@ Oleh:
     ```
     - Jalankan `bash` pada `no6.sh` untuk mengaktifkan iptables tsb. <br>
     - Untuk melihat hasilnya, lakukan `nc -l -p 80` pada MADIUN dan PROBOLINGGO. Kemudian dari SIDOARJO `nc 10.151.83.122 80`. Masukkan pesan apa saja, maka pesan itu akan di terima oleh PROBOLINGGO. Selanjutnya SIDOARJO keluar dari sambungan tersebut dengan `Ctrl+c` dan masuk lagi dengan konfigurasi yang sama. Lalu masukkan pesan, maka pesan itu tidak akan diterima oleh MADIUN. Jadi ada pergantian antara MADIUN dan PROBOLINGGO. <br>
-    
-15. Semua paket diDROP tercatat dalam log pada setiap UML yang memiliki DROP policy. <br>
-    - Buat file baru pada MALANG, MOJOKERTO dan SURABAYA dengan nama `no7.sh` untuk menyimpan script. <br>
-    - Tambahkan pada file `no7.sh` script di bawah ini. <br>
-    ```
-    iptables -N LOGGING
-    iptables -A INPUT -j LOGGING
-    iptables -A OUTPUT -j LOGGING
-    iptables -A LOGGING -j LOG --log-prefix "IPTables-Dropped: " --log-level 4
-    iptables -A LOGGING -j DROP
-    ```
-    - Jalankan `bash` pada `no7.sh` untuk mengaktifkan iptables tsb. <br>
-
 
