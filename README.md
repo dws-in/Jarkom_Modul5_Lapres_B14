@@ -143,5 +143,5 @@ Oleh:
     iptables -t nat -A POSTROUTING -p tcp -d 192.168.0.11 --dport 80 -j SNAT --to-source 10.151.83.122:80
     ```
     - Jalankan `bash` pada `no6.sh` untuk mengaktifkan iptables tsb. <br>
-    - Untuk melihat hasilnya, lakukan `nc -l -p 80` pada MADIUN dan PROBOLINGGO. Kemudian dari SIDOARJO `nc 10.151.83.122 80`. Masukkan pesan apa saja, maka pesan itu akan di terima oleh PROBOLINGGO. Selanjutnya SIDOARJO keluar dari sambungan tersebut dengan `Ctrl+c` dan masuk lagi dengan konfigurasi yang sama. Lalu masukkan pesan, maka pesan itu tidak akan diterima oleh MADIUN. Jadi ada pergantian antara MADIUN dan PROBOLINGGO. <br>
+    - Untuk melihat hasilnya, lakukan `nc -l -p 80` pada MADIUN dan PROBOLINGGO. Kemudian dari luar UML putty ke-1 `nc 10.151.83.122 80`. Masukkan pesan apa saja, maka pesan itu akan di terima oleh PROBOLINGGO. Pada putty ke-2 jalankan `nc 10.151.83.122 80` Lalu masukkan pesan, maka pesan itu tidak akan diterima oleh MADIUN. Jadi ada pergantian antara MADIUN dan PROBOLINGGO. <br>
 
