@@ -128,8 +128,27 @@ Oleh:
     - Untuk melihat hasil dari script `no5.sh`, lakukan `date -s '202020-12-12 08:00:00'` pada MALANG. Kemudian dari GRESIK `ping 10.151.83.122` jika hasilnya unreachable maka berhasil. <br>
     
 14. Request dari client yang mengakses DNS Server akan didistribusikan secara bergantian pada PROBOLINGGO port 80 dan MADIUN port 80. <br>
-    - sdf
+    - Buat file baru pada MALANG, MOJOKERTO dan SURABAYA dengan nama `no7.sh` untuk menyimpan script. <br>
+    - Tambahkan pada file `no7.sh` script di bawah ini. <br>
+    ```
+    iptables -N LOGGING
+    iptables -A INPUT -j LOGGING
+    iptables -A OUTPUT -j LOGGING
+    iptables -A LOGGING -j LOG --log-prefix "IPTables-Dropped: " --log-level 4
+    iptables -A LOGGING -j DROP
+    ```
+    - Jalankan `bash` pada `no7.sh` untuk mengaktifkan iptables tsb. <br>
+    
 15. Semua paket diDROP tercatat dalam log pada setiap UML yang memiliki DROP policy. <br>
-    - asda
+    - Buat file baru pada MALANG, MOJOKERTO dan SURABAYA dengan nama `no7.sh` untuk menyimpan script. <br>
+    - Tambahkan pada file `no7.sh` script di bawah ini. <br>
+    ```
+    iptables -N LOGGING
+    iptables -A INPUT -j LOGGING
+    iptables -A OUTPUT -j LOGGING
+    iptables -A LOGGING -j LOG --log-prefix "IPTables-Dropped: " --log-level 4
+    iptables -A LOGGING -j DROP
+    ```
+    - Jalankan `bash` pada `no7.sh` untuk mengaktifkan iptables tsb. <br>
 
 
