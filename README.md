@@ -96,7 +96,10 @@ Oleh:
     - Buat file baru dengan nama `no2.sh` untuk menyimpan script. <br>
     - Tambahkan pada file tersebut script di bawah ini. <br>
     ```
-    iptables -A FORWARD -p tcp --dport 22 -d 10.151.83.120/29 -i eth0 -j DROP
+    iptables -N LOGGING
+    iptables -A FORWARD -p tcp --dport 22 -d 10.151.83.120/29 -i eth0 -j LOGGING
+    iptables -A LOGGING -m limit --limit 5/min -j LOG --log-prefix "iptables_FORWARD_denied: " --log-level 7
+    iptables -A LOGGING -j DROP
     ```
     - Jalankan `bash no2.sh` untuk mengaktifkan iptables tsb. <br>
     - Untuk melihat hasilnya, lakuklan `nc -l -p 22` pada MALANG dan `nc 10.151.83.122 22` pada BIMA. Jika tidak diterima oleh MALANG maka berhasil. <br>
@@ -108,6 +111,16 @@ Oleh:
     iptables -A INPUT -p icmp -m connlimit --connlimit-above 3 --connlimit-mask 0 -j DROP
     ```
     - Jalankan `bash no3.sh` untuk mengaktifkan iptables tsb. <br>
+    - Untuk melihat hasilnya, lakuklan `ping 10.151.83.122` pada 4 UML selain MALANG dan MOJOKERTO. Jika 3 UML pertama menerima ack dan yang ke-4 tidak menerima ack maka berhasil. <br>
+    
+13. SIDOARJO dan GRESIK diberikan waktu akses untuk mengakses server MALANG. <br>
+    - SIDOARJO = 07:00 - 17:00 (Senin - Jumat) dan GRESIK = 17:00 - 07:00 (Setiap Hari). <br>
+    - Buat file baru pada MALANG dan MOJOKERTO dengan nama `no4-5.sh` untuk menyimpan script. <br>
+    - Tambahkan pada file tersebut script di bawah ini. <br>
+    ```
+    iptables -A INPUT -p icmp -m connlimit --connlimit-above 3 --connlimit-mask 0 -j DROP
+    ```
+    - Jalankan `bash no4-5.sh` untuk mengaktifkan iptables tsb. <br>
     - Untuk melihat hasilnya, lakuklan `ping 10.151.83.122` pada 4 UML selain MALANG dan MOJOKERTO. Jika 3 UML pertama menerima ack dan yang ke-4 tidak menerima ack maka berhasil. <br>
     
 4. Akses ke MALANG yang berasal dari subnet SIDOARJO hanya diperbolehkan pada pukul 07.00 - 17.00 pada hari Senin sampai Jumat. <br>
