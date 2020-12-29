@@ -83,10 +83,24 @@ Oleh:
    - Edit file `/etc/default/isc-dhcp-relay` pada BATU. Tambahkan `SERVERS="10.151.83.123"` dan `INTERFACES="eth0 eth1 eth2"`.  <br>
      ![alt text](/img/9.1.png) <br>
      
-     
-## Soal
-1. Agar topologi yang dibuat dapat mengakses keluar, kita mengkonfigurasi SURABAYA menggunakan iptables, tanpa menggunakan MASQUERADE. <br>
-2. Mendrop semua akses SSH dari luar Topologi (UML) kita pada server yang memiliki ip DMZ (DHCP dan DNS SERVER) pada SURABAYA demi menjaga keamanan. <br>
+10. Menggunakan `iptables` pada SURABAYA untuk akses ke luar tanpa `MASQUERADE`. <br>
+   - Buat file baru dengan nama `no1.sh` untuk menyimpan script. <br>
+   - Tambahkan pada file tersebut script di bawah ini. <br>
+   ```
+   iptables -t nat -A POSTROUTING -s 192.168.0.0/22 -o eth0 -j SNAT --to-source 10.151.74.62
+   ```
+   - Jalankan `bash no1.sh` untuk mengaktifkan iptables tsb. <br>
+   - Untuk melihat hasilnya, lakuklan `ping its.ac.id` pada setiap UML. <br> 
+   
+11. Mendrop semua akses SSH ke  ip DMZ dari luar Topologi. <br>
+   - Buat file baru dengan nama `no2.sh` untuk menyimpan script. <br>
+   - Tambahkan pada file tersebut script di bawah ini. <br>
+   ```
+   iptables -A FORWARD -p tcp --dport 22 -d 10.151.83.120/29 -i eth0 -j DROP
+   ```
+   - Jalankan `bash no2.sh` untuk mengaktifkan iptables tsb. <br>
+   - Untuk melihat hasilnya, lakuklan `nc -l -p 22` pada MALANG dan `nc 10.151.83.122 22` pada BIMA. Jika tidak diterima oleh MALANG maka berhasil. <br>
+   
 3. Membatasi DHCP dan DNS server hanya boleh menerima maksimal 3 koneksi ICMP secara bersamaan yang berasal dari mana saja menggunakan iptables pada masing masing server, selebihnya akan di DROP. <br>
 4. Akses ke MALANG yang berasal dari subnet SIDOARJO hanya diperbolehkan pada pukul 07.00 - 17.00 pada hari Senin sampai Jumat. <br>
 5. Akses dari subnet GRESIK hanya diperbolehkan pada pukul 17.00 hingga pukul 07.00 setiap harinya. Selain itu akan diREJECT. <br>
