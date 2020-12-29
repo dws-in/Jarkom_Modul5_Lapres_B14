@@ -92,7 +92,7 @@ Oleh:
     - Jalankan `bash no1.sh` untuk mengaktifkan iptables tsb. <br>
     - Untuk melihat hasilnya, lakuklan `ping its.ac.id` pada setiap UML. <br> 
    
-11. Mendrop semua akses SSH ke  ip DMZ dari luar Topologi. <br>
+11. DROP semua akses SSH ke  ip DMZ dari luar Topologi. <br>
     - Buat file baru dengan nama `no2.sh` untuk menyimpan script. <br>
     - Tambahkan pada file tersebut script di bawah ini. <br>
     ```
@@ -118,12 +118,18 @@ Oleh:
     
 13. SIDOARJO dan GRESIK diberikan waktu akses untuk mengakses server MALANG. <br>
     - SIDOARJO = 07:00 - 17:00 (Senin - Jumat) dan GRESIK = 17:00 - 07:00 (Setiap Hari). <br>
-    - Buat 2 file baru pada MALANG dan MOJOKERTO dengan nama `no4.sh` dan `no5.sh` untuk menyimpan script. <br>
+    - Buat 2 file baru pada MALANG dengan nama `no4.sh` dan `no5.sh` untuk menyimpan script. <br>
     - Tambahkan pada file `no4.sh` script di bawah ini. <br>
     ```
-    iptables -A INPUT -p icmp -m connlimit --connlimit-above 3 --connlimit-mask 0 -j DROP
+    iptables -A INPUT -s 192.168.1.0/24 -m time --timestart 07:00 --timestop 16:59 --weekdays Mon,Tue,Wed,Thu,Fri -j ACCEPT
+    iptables -A INPUT -s 192.168.1.0/24 -m time --timestart 17:00 --timestop 06:59 -j REJECT
+    iptables -A INPUT -s 192.168.1.0/24 -m time --timestart 07:00 --timestop 16:59 --weekdays Sat,Sun -j REJECT
     ```
-    - Jalankan `bash no4-5.sh` untuk mengaktifkan iptables tsb. <br>
+    - Tambahkan pada file `no5.sh` script di bawah ini. <br>
+    ```
+    iptables -A INPUT -s 192.168.2.0/24 -m time --timestart 07:00 --timestop 16:59 -j REJECT
+    ```
+    - Jalankan `bash` pada `no4.sh` dan `no5.sh` untuk mengaktifkan iptables tsb. <br>
     - Untuk melihat hasilnya, lakuklan `ping 10.151.83.122` pada 4 UML selain MALANG dan MOJOKERTO. Jika 3 UML pertama menerima ack dan yang ke-4 tidak menerima ack maka berhasil. <br>
     
 4. Akses ke MALANG yang berasal dari subnet SIDOARJO hanya diperbolehkan pada pukul 07.00 - 17.00 pada hari Senin sampai Jumat. <br>
